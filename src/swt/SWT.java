@@ -162,4 +162,58 @@ public class SWT {
 
         return maxNumber;
     }
+       // tim so be nhat trong chuoi
+       public  int findSmallestNumber(String chuoi) {
+        int min = Integer.MAX_VALUE; // Khởi tạo giá trị min là giá trị lớn nhất của kiểu int
+
+        // Duyệt qua từng ký tự trong chuỗi
+        for (int i = 0; i < chuoi.length(); i++) {
+            char kyTu = chuoi.charAt(i);
+            // Chuyển ký tự thành số và kiểm tra nếu nhỏ hơn giá trị min hiện tại
+            if (Character.isDigit(kyTu)) {
+                int so = Character.getNumericValue(kyTu);
+                if (so < min) {
+                    min = so;
+                }
+            }
+        }
+
+        if (min != Integer.MAX_VALUE) {
+            return min;
+        } else {
+            // Trả về -1 nếu không có số nào trong chuỗi
+            return -1;
+        }
+    }
+// tinh tong cac so trong chuoi
+        public  int calculateSumOfNumbers(String str) {
+        if (str == null || str.isEmpty()) {
+            return 0; // Trả về 0 nếu chuỗi là null hoặc rỗng
+        }
+
+        int sum = 0;
+        StringBuilder currentNumber = new StringBuilder();
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (Character.isDigit(ch)) {
+                currentNumber.append(ch);
+            } else {
+                if (currentNumber.length() > 0) {
+                    int number = Integer.parseInt(currentNumber.toString());
+                    sum += number;
+                    currentNumber.setLength(0);
+                }
+            }
+        }
+
+        // Kiểm tra số cuối cùng nếu kết thúc với một chữ số
+        if (currentNumber.length() > 0) {
+            int number = Integer.parseInt(currentNumber.toString());
+            sum += number;
+        }
+
+        return sum;
+    }
 }
